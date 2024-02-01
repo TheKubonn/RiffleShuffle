@@ -162,4 +162,9 @@ void ABlasterCharacter::ServerEquipButtonPressed_Implementation()
 	}
 }
 
+bool ABlasterCharacter::IsWeaponEquipped()
+{
+	return (Combat && Combat->EquippedWeapon);
+}
+
 

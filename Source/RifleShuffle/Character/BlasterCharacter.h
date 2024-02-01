@@ -56,4 +56,5 @@ private:
 
 public:
 	void SetOverlappingWeapon(TObjectPtr <AWeapon> Weapon);
+	bool IsWeaponEquipped();
 };
