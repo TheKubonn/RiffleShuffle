@@ -30,6 +30,8 @@ private:
 
 	TObjectPtr <ABlasterCharacter> Character;
 
+	bool bIsAiming;
+
 public:	
 		
 };
