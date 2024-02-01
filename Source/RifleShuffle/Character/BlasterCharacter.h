@@ -8,6 +8,7 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UWidgetComponent;
 
 UCLASS()
 class RIFLESHUFFLE_API ABlasterCharacter : public ACharacter
@@ -34,6 +35,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	TObjectPtr <UCameraComponent> FollowCamera;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr <UWidgetComponent> OverheadWidget;
 
 public:
 
