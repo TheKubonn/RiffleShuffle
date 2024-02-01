@@ -9,6 +9,8 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UWidgetComponent;
+class AWeapon;
+class UCombatComponent;
 
 UCLASS()
 class RIFLESHUFFLE_API ABlasterCharacter : public ACharacter
@@ -19,8 +21,8 @@ public:
 	ABlasterCharacter();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void PostInitializeComponents() override;
 protected:
 	virtual void BeginPlay() override;
 
@@ -28,6 +30,7 @@ protected:
 	void MoveRight(float Value);
 	void Turn(float Value);
 	void LookUp(float Value);
+	void EKeyPressed();
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
@@ -39,6 +42,15 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr <UWidgetComponent> OverheadWidget;
 
-public:
+	UPROPERTY(ReplicatedUsing = OnRep_OverlappingWeapon)
+	TObjectPtr <AWeapon> OverlappingWeapon;
 
+	UPROPERTY(VisibleAnywhere, Category = "Combat")
+	TObjectPtr <UCombatComponent> Combat;
+
+	UFUNCTION()
+	void OnRep_OverlappingWeapon(AWeapon* LastWeapon);
+
+public:
+	void SetOverlappingWeapon(TObjectPtr <AWeapon> Weapon);
 };
