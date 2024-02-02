@@ -23,6 +23,10 @@ public:
 	void EquipWeapon(AWeapon* WeaponToEquip);
 protected:
 	virtual void BeginPlay() override;
+	void SetAiming(bool bAiming);
+
+	UFUNCTION(Server, Reliable)
+	void ServerSetAiming(bool bAiming);
 
 private:
 	UPROPERTY(Replicated)
@@ -30,6 +34,7 @@ private:
 
 	TObjectPtr <ABlasterCharacter> Character;
 
+	UPROPERTY(Replicated)
 	bool bIsAiming;
 
 public:	
