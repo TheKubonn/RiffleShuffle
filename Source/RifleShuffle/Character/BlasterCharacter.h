@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "RifleShuffle/EnumTypes/TurningInPlace.h"
 #include "BlasterCharacter.generated.h"
 
 class USpringArmComponent;
@@ -62,6 +63,8 @@ private:
 	float AO_Pitch;
 	FRotator StartingAimRotation;
 
+	ETurningInPlace TurningInPlace;
+
 public:
 	void SetOverlappingWeapon(TObjectPtr <AWeapon> Weapon);
 	bool IsWeaponEquipped();
@@ -70,4 +73,5 @@ public:
 	FORCEINLINE float GetAO_Yaw() const { return AO_Yaw; }
 	FORCEINLINE float GetAO_Pitch() const { return AO_Pitch; }
 	TObjectPtr <AWeapon> GetEquippedWeapon();
+	FORCEINLINE ETurningInPlace GetTurningInPlace() const { return TurningInPlace; }
 };
